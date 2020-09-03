@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
-import Tab from './components/tabs/Tab';
+import TabHandler from './components/tabs/TabHandler';
 import Controls from './components/controls/Controls';
+import { Tab } from './types/Tab'
 import './styles/app.css';
 
 import { Provider } from 'react-redux';
@@ -12,16 +13,16 @@ mainElement.setAttribute('id', 'root');
 document.body.appendChild(mainElement);
 
 const App = () => {
-  const [currentTab, setCurrentTab] = useState(1);
+  const [currentTab, setCurrentTab] = useState(Tab.PERSONAL);
 
   return (
     <Provider store={store}>
-      <div className="h-screen overflow-hidden">
-        <div className="h-16 bg-gray-700 p-3">
-          <Controls />
+      <div className="h-auto overflow-hidden">
+        <div className="h-16 w-full bg-gray-700 p-3 fixed z-10">
+          <Controls setCurrentTab={setCurrentTab}/>
         </div>
-        <div className="h-full overflow-hidden">
-          <Tab id={currentTab} />
+        <div className="h-full pt-16">
+          <TabHandler tab={currentTab} />
         </div>
       </div>
     </Provider>
