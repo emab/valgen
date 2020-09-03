@@ -1,7 +1,7 @@
 {
-  "name": "electron-react-typescript",
-  "version": "1.0.0",
-  "description": "An Electron boilerplate including TypeScript, React, Jest and ESLint.",
+  "name": "valgen",
+  "version": "0.0.1",
+  "description": "Values generator",
   "main": "./dist/main.js",
   "scripts": {
     "build:styles": "postcss src/styles/tailwind.css -o src/styles/app.css",
@@ -19,8 +19,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "Diego Fernandes <diego.schell.f@gmail.com>",
-  "license": "MIT",
+  "author": "Eddy Brown",
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
@@ -82,31 +81,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "style-loader": "^1.2.1"
-  },
-  "build": {
-    "appId": "your.id",
-    "mac": {
-      "category": "public.app-category.video"
-    },
-    "directories": {
-      "output": "packages"
-    },
-    "files": [
-      "package.json",
-      "dist/**"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
