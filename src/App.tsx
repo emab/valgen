@@ -19,7 +19,7 @@ const App = () => {
     <Provider store={store}>
       <div className="h-auto overflow-hidden">
         <div className="h-16 w-full bg-gray-700 p-3 fixed z-10">
-          <Controls setCurrentTab={setCurrentTab}/>
+          <Controls currentTab={currentTab} setCurrentTab={setCurrentTab}/>
         </div>
         <div className="h-full pt-16">
           <TabHandler tab={currentTab} />
