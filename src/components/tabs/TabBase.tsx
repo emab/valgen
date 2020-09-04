@@ -62,8 +62,10 @@ const TabBase: React.FC<Props> = ({
   }, []);
 
   return (
-    <div className={cn({ ['bg-green-200']: !canSelectValue() })}>
-      <h1>{title}</h1>
+    <div className={cn('h-full', { ['bg-green-200']: !canSelectValue() })}>
+      <div className="bg-gray-200 py-2">
+      <h1 className="text-center">{title}</h1>
+      </div>
       <div className="grid grid-cols-3">
         {values.map((val, i) => {
           return (

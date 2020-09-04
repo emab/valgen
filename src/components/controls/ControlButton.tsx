@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Button } from '@material-ui/core';
-
+import cn from 'classnames';
+import './ControlButton.css';
 interface Props {
   id?: string;
   text: string;
@@ -17,15 +18,19 @@ const ControlButton: React.FC<Props> = ({
   highlight,
 }) => {
   const handleOnClick = (evt: React.MouseEvent) => {
-    onClick && onClick(id);
+    if (id) {
+      onClick && onClick(id);
+    } else {
+      onClick && onClick();
+    }
   };
-  const buttonColour = colour ? colour : highlight ? 'primary' : undefined;
 
   return (
     <Button
       id={id}
-      variant="contained"
-      color={buttonColour}
+      variant="outlined"
+      color={highlight ? 'primary' : 'default'}
+      className="tab-button"
       onClick={handleOnClick}
     >
       {text}

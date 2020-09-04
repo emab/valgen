@@ -1,6 +1,7 @@
 import { Action } from 'redux';
 import { Value } from '../../../types/Value';
 import { Tab } from '../../../types/Tab';
+import { RESET_VALUES } from './actions';
 
 interface State {
   values: Value[];
@@ -30,6 +31,11 @@ const valuesReducer = (valueType: Tab) => (
         values: [...state.values].filter(
           (val) => val.name !== action.value.name
         ),
+      };
+    case RESET_VALUES:
+      return {
+        ...state,
+        values: [],
       };
     default:
       return state;

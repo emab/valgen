@@ -9,6 +9,8 @@ const REMOVE_PERSONAL_VALUE = `REMOVE_${Tab.PERSONAL}_VALUE`;
 const REMOVE_CURRENT_VALUE = `REMOVE_${Tab.CURRENT}_VALUE`;
 const REMOVE_IDEAL_VALUE = `REMOVE_${Tab.IDEAL}_VALUE`;
 
+export const RESET_VALUES = 'RESET_VALUES';
+
 const addValue = (type: Tab) => (value: Value) => {
   switch (type) {
     case Tab.PERSONAL:
@@ -29,6 +31,10 @@ const removeValue = (type: Tab) => (value: Value) => {
     case Tab.IDEAL:
       return { type: REMOVE_IDEAL_VALUE, value };
   }
+};
+
+export const resetValues = () => {
+  return { type: RESET_VALUES };
 };
 
 export const addPersonalValue = addValue(Tab.PERSONAL);
