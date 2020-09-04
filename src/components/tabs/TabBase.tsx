@@ -1,41 +1,87 @@
-import React, { useState } from 'react';
-import { Value } from '../../types/Value';
+import React, { useState, useEffect } from 'react';
 import { Checkbox } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { VALUES } from '../../valuesArray';
+import store from '../../store';
+import { Tab } from '../../types/Tab';
+import { State } from '../../types/State';
+import cn from "classnames";
 
 interface Props {
   title: string;
   addValue: Function;
   removeValue: Function;
+  tab: Tab;
+  state?: State;
 }
 
-const TabBase: React.FC<Props> = ({ title, addValue, removeValue }) => {
+const TabBase: React.FC<Props> = ({
+  title,
+  addValue,
+  removeValue,
+  tab,
+  state,
+}) => {
   const [values, setValues] = useState(VALUES);
   const dispatch = useDispatch();
   const onToggleValue = (evt: React.ChangeEvent, checked: boolean) => {
-    const valueToToggle = values.find((val) => val.name === evt.target.id);
-    if (checked) {
-      dispatch(addValue(valueToToggle));
-    } else {
-      dispatch(removeValue(valueToToggle));
+    if (canSelectValue() || !checked) {
+      const valueToToggle = values.find((val) => val.name === evt.target.id);
+      if (checked) {
+        dispatch(addValue(valueToToggle));
+      } else {
+        dispatch(removeValue(valueToToggle));
+      }
     }
   };
+
+  const canSelectValue = (): boolean => {
+    return getCheckedValues().length < 10 ;
+  };
+
+  const getCheckedValues = () => {
+    if (state) {
+      switch (tab) {
+        case Tab.PERSONAL:
+          return state.personal.values;
+        case Tab.CURRENT:
+          return state.current.values;
+        case Tab.IDEAL:
+          return state.ideal.values;
+      }
+    }
+    return [];
+  };
+
+  const updateCheckedValues = () => {
+    const checkedValues = getCheckedValues();
+  };
+
+  useEffect(() => {
+    updateCheckedValues();
+  }, []);
+
   return (
-    <>
+    <div className={cn({ ['bg-green-200']: !canSelectValue() })}>
       <h1>{title}</h1>
       <div className="grid grid-cols-3">
         {values.map((val, i) => {
           return (
             <div key={val.name}>
-              <Checkbox id={val.name} onChange={onToggleValue} />
+              <Checkbox
+                id={val.name}
+                onChange={onToggleValue}
+                checked={getCheckedValues().includes(val)}
+              />
               {val.name}
             </div>
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
-export default TabBase;
+const mapStateToProps = (state: State) => ({ state: state });
+
+export default connect(mapStateToProps)(TabBase);
