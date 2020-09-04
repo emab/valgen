@@ -7,14 +7,19 @@ import { VALUES } from '../../valuesArray';
 interface Props {
   title: string;
   addValue: Function;
+  removeValue: Function;
 }
 
-const TabBase: React.FC<Props> = ({ title, addValue }) => {
+const TabBase: React.FC<Props> = ({ title, addValue, removeValue }) => {
   const [values, setValues] = useState(VALUES);
   const dispatch = useDispatch();
   const onToggleValue = (evt: React.ChangeEvent, checked: boolean) => {
-    const valueToAdd = values.find((val) => val.name === evt.target.id);
-    dispatch(addValue(valueToAdd));
+    const valueToToggle = values.find((val) => val.name === evt.target.id);
+    if (checked) {
+      dispatch(addValue(valueToToggle));
+    } else {
+      dispatch(removeValue(valueToToggle));
+    }
   };
   return (
     <>

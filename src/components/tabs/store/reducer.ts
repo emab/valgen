@@ -24,6 +24,13 @@ const valuesReducer = (valueType: Tab) => (
         ...state,
         values: [...state.values, action.value],
       };
+    case `REMOVE_${valueType}_VALUE`:
+      return {
+        ...state,
+        values: [...state.values].filter(
+          (val) => val.name !== action.value.name
+        ),
+      };
     default:
       return state;
   }
