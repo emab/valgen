@@ -1,9 +1,12 @@
 import { Button } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Tab } from '../../types/Tab';
 import { resetValues } from '../tabs/store/actions';
 import ControlButton from './ControlButton';
+import { saveAs } from 'file-saver';
+import domtoimage from 'dom-to-image';
+import { clipboard, nativeImage } from 'electron';
 
 interface Props {
   currentTab: Tab;
@@ -18,9 +21,17 @@ const Controls: React.FC<Props> = ({
   showPreview,
   togglePreview,
 }) => {
+  const [showAdd, setShowAdd] = useState(false);
   const dispatch = useDispatch();
   const handleResetValues = () => {
     dispatch(resetValues());
+  };
+
+  const saveImage = () => {
+    const modelDiv = document.getElementById('modelOutput');
+    if (modelDiv) {
+      domtoimage.toBlob(modelDiv).then((blob) => saveAs(blob, 'diagram.png'));
+    }
   };
   return (
     <>
@@ -31,7 +42,7 @@ const Controls: React.FC<Props> = ({
               {showPreview ? 'Hide Preview' : 'Show Preview'}
             </Button>
           </div>
-          <div className="ml-2">
+          <div className="mr-2">
             <Button
               color="secondary"
               variant="contained"
@@ -40,9 +51,12 @@ const Controls: React.FC<Props> = ({
               Reset
             </Button>
           </div>
+          <div>
+            <Button variant="contained">Custom</Button>
+          </div>
         </div>
         {showPreview && (
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={saveImage}>
             Save
           </Button>
         )}

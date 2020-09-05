@@ -8,6 +8,7 @@ import './styles/app.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import Preview from './components/preview';
+import cn from 'classnames';
 
 const mainElement = document.createElement('div');
 mainElement.setAttribute('id', 'root');
@@ -29,7 +30,10 @@ const App = () => {
             togglePreview={togglePreview}
           />
         </div>
-        <div className="h-full pt-16">
+        <div
+          className={cn('h-full pt-16 overflow-auto', { flex: showPreview })}
+          id="test"
+        >
           {showPreview ? <Preview /> : <TabHandler tab={currentTab} />}
         </div>
       </div>

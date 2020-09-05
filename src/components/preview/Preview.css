@@ -27,6 +27,7 @@
 .model-container {
   position: relative;
   width: 415px;
+  min-width: 415px;
 }
 
 .table-container {

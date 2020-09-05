@@ -37,7 +37,7 @@ const Preview: React.FC<Props> = ({
   const outputIdealValues = outputCircles(idealValues);
 
   return (
-    <div className="flex flex-row justify-center">
+    <div id="modelOutput" className="flex flex-row justify-center">
       <div className="model-container">
         <img src={model} className="model-image" />
         <div className="values-grid">
