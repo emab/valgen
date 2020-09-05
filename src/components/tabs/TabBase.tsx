@@ -1,10 +1,10 @@
 import { Checkbox } from '@material-ui/core';
-import cn from "classnames";
+import cn from 'classnames';
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { State } from '../../types/State';
 import { Tab } from '../../types/Tab';
-import { VALUES } from '../../valuesArray';
+import { Value } from '../../types/Value';
 
 interface Props {
   title: string;
@@ -12,6 +12,7 @@ interface Props {
   removeValue: Function;
   tab: Tab;
   state: State;
+  values: Value[];
 }
 
 const TabBase: React.FC<Props> = ({
@@ -20,8 +21,8 @@ const TabBase: React.FC<Props> = ({
   removeValue,
   tab,
   state,
+  values,
 }) => {
-  const [values, setValues] = useState(VALUES);
   const dispatch = useDispatch();
   const onToggleValue = (evt: React.ChangeEvent, checked: boolean) => {
     if (canSelectValue() || !checked) {
@@ -35,7 +36,7 @@ const TabBase: React.FC<Props> = ({
   };
 
   const canSelectValue = (): boolean => {
-    return getCheckedValues().length < 10 ;
+    return getCheckedValues().length < 10;
   };
 
   const getCheckedValues = () => {
@@ -55,7 +56,7 @@ const TabBase: React.FC<Props> = ({
   return (
     <div className={cn('h-full', { ['bg-green-200']: !canSelectValue() })}>
       <div className="bg-gray-200 py-2">
-      <h1 className="text-center">{title}</h1>
+        <h1 className="text-center">{title}</h1>
       </div>
       <div className="grid grid-cols-3">
         {values.map((val, i) => {
@@ -75,6 +76,9 @@ const TabBase: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: State) => ({ state: state });
+const mapStateToProps = (state: State) => ({
+  state: state,
+  values: state.all.values,
+});
 
 export default connect(mapStateToProps)(TabBase);

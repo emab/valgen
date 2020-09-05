@@ -10,4 +10,7 @@ export interface State {
   ideal: {
     values: Value[];
   };
+  all: {
+    values: Value[];
+  }
 }

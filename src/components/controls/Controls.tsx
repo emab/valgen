@@ -6,7 +6,6 @@ import { resetValues } from '../tabs/store/actions';
 import ControlButton from './ControlButton';
 import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
-import { clipboard, nativeImage } from 'electron';
 import AddValue from '../add-value';
 
 interface Props {
@@ -29,6 +28,7 @@ const Controls: React.FC<Props> = ({
   };
 
   const toggleShowAdd = () => {
+    
     setShowAdd(!showAdd);
   };
 

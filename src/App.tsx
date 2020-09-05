@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import TabHandler from './components/tabs/TabHandler';
 import Controls from './components/controls/Controls';
 import { Tab } from './types/Tab';
 import './styles/app.css';
 
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import store from './store';
 import Preview from './components/preview';
 import cn from 'classnames';
+import { setValues } from './store/actions';
+import { getAllValues } from './util/getValues';
 
 const mainElement = document.createElement('div');
 mainElement.setAttribute('id', 'root');

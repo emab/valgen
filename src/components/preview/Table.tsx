@@ -76,7 +76,6 @@ const PreviewTable: React.FC<Props> = ({
         }
       }
     });
-    console.log(newStyles);
     setRowStyles(newStyles);
   };
 
@@ -107,13 +106,11 @@ const PreviewTable: React.FC<Props> = ({
 
   useEffect(() => {
     generateValueRowStyles();
-    console.log('empty dep');
   }, []);
 
   useEffect(() => {
     setRowStyles([]);
     generateValueRowStyles();
-    console.log(rowStyles);
   }, [personalValues, currentValues, idealValues]);
 
   return (

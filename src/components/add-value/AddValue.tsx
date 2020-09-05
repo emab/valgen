@@ -13,6 +13,9 @@ import {
   Theme,
 } from '@material-ui/core';
 import React, { useState } from 'react';
+import { saveValueToStorage } from '../../util/storage';
+import { useDispatch } from 'react-redux';
+import { reloadValues } from '../../store/thunk';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,6 +43,7 @@ const AddValue: React.FC<Props> = ({ open, handleClose }) => {
   const [valueName, setValueName] = useState('');
   const [level, setLevel] = useState(7);
   const [limiting, setLimting] = useState(false);
+  const dispatch = useDispatch();
 
   const handleValueNameChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -60,7 +64,9 @@ const AddValue: React.FC<Props> = ({ open, handleClose }) => {
 
   const handleSubmit = () => {
     if (valueName) {
-      //TODO add the custom value to local storage + add to current values
+      saveValueToStorage({ name: valueName, level, limiting });
+      dispatch(reloadValues());
+      handleClose();
     }
   };
 
