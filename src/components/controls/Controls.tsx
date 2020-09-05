@@ -1,10 +1,9 @@
-import React, { useMemo } from 'react';
-import ControlButton from './ControlButton';
-import { Tab } from '../../types/Tab';
-import { connect, useDispatch } from 'react-redux';
-import { State } from '../../types/State';
 import { Button } from '@material-ui/core';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Tab } from '../../types/Tab';
 import { resetValues } from '../tabs/store/actions';
+import ControlButton from './ControlButton';
 
 interface Props {
   currentTab: Tab;
@@ -26,17 +25,21 @@ const Controls: React.FC<Props> = ({
   return (
     <>
       <div className="flex justify-between">
-        <div>
-          <Button color="primary" variant="contained" onClick={togglePreview}>
-            {showPreview ? 'Hide Preview' : 'Show Preview'}
-          </Button>
-          <Button
-            color="secondary"
-            variant="contained"
-            onClick={handleResetValues}
-          >
-            Reset
-          </Button>
+        <div className="flex">
+          <div className="mr-2">
+            <Button color="primary" variant="contained" onClick={togglePreview}>
+              {showPreview ? 'Hide Preview' : 'Show Preview'}
+            </Button>
+          </div>
+          <div className="ml-2">
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={handleResetValues}
+            >
+              Reset
+            </Button>
+          </div>
         </div>
         {showPreview && (
           <Button variant="contained" color="primary">
@@ -70,8 +73,4 @@ const Controls: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: State) => ({
-  state: state,
-});
-
-export default connect(mapStateToProps)(Controls);
+export default Controls;

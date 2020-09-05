@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
 import { Checkbox } from '@material-ui/core';
-import { useDispatch, connect } from 'react-redux';
-import { VALUES } from '../../valuesArray';
-import store from '../../store';
-import { Tab } from '../../types/Tab';
-import { State } from '../../types/State';
 import cn from "classnames";
+import React, { useState } from 'react';
+import { connect, useDispatch } from 'react-redux';
+import { State } from '../../types/State';
+import { Tab } from '../../types/Tab';
+import { VALUES } from '../../valuesArray';
 
 interface Props {
   title: string;
   addValue: Function;
   removeValue: Function;
   tab: Tab;
-  state?: State;
+  state: State;
 }
 
 const TabBase: React.FC<Props> = ({
@@ -52,14 +51,6 @@ const TabBase: React.FC<Props> = ({
     }
     return [];
   };
-
-  const updateCheckedValues = () => {
-    const checkedValues = getCheckedValues();
-  };
-
-  useEffect(() => {
-    updateCheckedValues();
-  }, []);
 
   return (
     <div className={cn('h-full', { ['bg-green-200']: !canSelectValue() })}>

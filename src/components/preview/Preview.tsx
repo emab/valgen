@@ -8,37 +8,43 @@ import { State } from '../../types/State';
 import { Value } from '../../types/Value';
 
 interface Props {
-  personalValues?: Value[];
-  currentValues?: Value[];
-  idealValues?: Value[];
+  personalValues: Value[];
+  currentValues: Value[];
+  idealValues: Value[];
 }
 
-const BLUE_CIRCLE = (key: string) => <img key={key} src={circle} />;
+const ADD_CIRCLE = (limiting: boolean | undefined, key: string) =>
+  limiting ? <img key={key} src={redCircle} /> : <img key={key} src={circle} />;
 
 const Preview: React.FC<Props> = ({
   personalValues,
   currentValues,
   idealValues,
 }) => {
-  const numPersonalValues = (level: number) => {
+  const outputCircles = (values: Value[]) => (level: number) => {
     let circles: JSX.Element[] = [];
-    personalValues
-      ?.filter((val) => val.level === level)
-      .forEach((val) => circles.push(BLUE_CIRCLE(val.name)));
+    values
+      .filter((val) => val.level === level)
+      .forEach((val) => {
+        circles.push(ADD_CIRCLE(val.limiting, val.name));
+      });
     return circles;
   };
+  const outputPersonalValues = outputCircles(personalValues);
+  const outputCurrentValues = outputCircles(currentValues);
+  const outputIdealValues = outputCircles(idealValues);
   return (
     <div className="flex flex-row justify-center">
       <div className="model-container">
         <img src={model} className="model-image" />
         <div className="values-grid">
-          <div id="p7">{numPersonalValues(7)}</div>
-          <div id="p6">{numPersonalValues(6)}</div>
-          <div id="p5">{numPersonalValues(5)}</div>
-          <div id="p4">{numPersonalValues(4)}</div>
-          <div id="p3">{numPersonalValues(3)}</div>
-          <div id="p2">{numPersonalValues(2)}</div>
-          <div id="p1">{numPersonalValues(1)}</div>
+          <div>{outputPersonalValues(7)}</div>
+          <div>{outputPersonalValues(6)}</div>
+          <div>{outputPersonalValues(5)}</div>
+          <div>{outputPersonalValues(4)}</div>
+          <div>{outputPersonalValues(3)}</div>
+          <div>{outputPersonalValues(2)}</div>
+          <div>{outputPersonalValues(1)}</div>
         </div>
         <div className="table-container">
           <table className="preview-table">
@@ -55,13 +61,13 @@ const Preview: React.FC<Props> = ({
       <div className="model-container">
         <img src={model} className="model-image" />
         <div className="values-grid">
-          <div id="c7"></div>
-          <div id="c6"></div>
-          <div id="c5"></div>
-          <div id="c4"></div>
-          <div id="c3"></div>
-          <div id="c2"></div>
-          <div id="c1"></div>
+          <div>{outputCurrentValues(7)}</div>
+          <div>{outputCurrentValues(6)}</div>
+          <div>{outputCurrentValues(5)}</div>
+          <div>{outputCurrentValues(4)}</div>
+          <div>{outputCurrentValues(3)}</div>
+          <div>{outputCurrentValues(2)}</div>
+          <div>{outputCurrentValues(1)}</div>
         </div>
         <div className="table-container">
           <table className="preview-table">
@@ -78,13 +84,13 @@ const Preview: React.FC<Props> = ({
       <div className="model-container">
         <img src={model} className="model-image" />
         <div className="values-grid">
-          <div id="i7"></div>
-          <div id="i6"></div>
-          <div id="i5"></div>
-          <div id="i4"></div>
-          <div id="i3"></div>
-          <div id="i2"></div>
-          <div id="i1"></div>
+          <div>{outputIdealValues(7)}</div>
+          <div>{outputIdealValues(6)}</div>
+          <div>{outputIdealValues(5)}</div>
+          <div>{outputIdealValues(4)}</div>
+          <div>{outputIdealValues(3)}</div>
+          <div>{outputIdealValues(2)}</div>
+          <div>{outputIdealValues(1)}</div>
         </div>
         <div className="table-container">
           <table className="preview-table">

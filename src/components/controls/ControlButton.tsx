@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Button } from '@material-ui/core';
-import cn from 'classnames';
-import './ControlButton.css';
+
 interface Props {
   id?: string;
   text: string;
