@@ -6,6 +6,8 @@ import './Preview.css';
 import { connect } from 'react-redux';
 import { State } from '../../types/State';
 import { Value } from '../../types/Value';
+import PreviewTable from './Table';
+import { Values } from '../../types/Values';
 
 interface Props {
   personalValues: Value[];
@@ -33,6 +35,7 @@ const Preview: React.FC<Props> = ({
   const outputPersonalValues = outputCircles(personalValues);
   const outputCurrentValues = outputCircles(currentValues);
   const outputIdealValues = outputCircles(idealValues);
+
   return (
     <div className="flex flex-row justify-center">
       <div className="model-container">
@@ -46,17 +49,7 @@ const Preview: React.FC<Props> = ({
           <div>{outputPersonalValues(2)}</div>
           <div>{outputPersonalValues(1)}</div>
         </div>
-        <div className="table-container">
-          <table className="preview-table">
-            <thead>
-              <tr>
-                <th>Value</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <PreviewTable displayValue={Values.PERSONAL} />
       </div>
       <div className="model-container">
         <img src={model} className="model-image" />
@@ -69,17 +62,7 @@ const Preview: React.FC<Props> = ({
           <div>{outputCurrentValues(2)}</div>
           <div>{outputCurrentValues(1)}</div>
         </div>
-        <div className="table-container">
-          <table className="preview-table">
-            <thead>
-              <tr>
-                <th>Value</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <PreviewTable displayValue={Values.CURRENT} />
       </div>
       <div className="model-container">
         <img src={model} className="model-image" />
@@ -92,17 +75,7 @@ const Preview: React.FC<Props> = ({
           <div>{outputIdealValues(2)}</div>
           <div>{outputIdealValues(1)}</div>
         </div>
-        <div className="table-container">
-          <table className="preview-table">
-            <thead>
-              <tr>
-                <th>Value</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
-        </div>
+        <PreviewTable displayValue={Values.IDEAL} />
       </div>
     </div>
   );
