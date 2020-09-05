@@ -6,7 +6,7 @@ import { Tab } from '../../../types/Tab';
 const PersonalTab: React.FC = () => {
   return (
     <TabBase
-      title={'Ideal Organisational Values'}
+      title={'Desired Organisational Values'}
       addValue={addIdealValue}
       removeValue={removeIdealValue}
       tab={Tab.IDEAL}

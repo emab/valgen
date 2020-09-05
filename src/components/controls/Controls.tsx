@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { Tab } from '../../types/Tab';
 import { resetValues } from '../tabs/store/actions';
 import ControlButton from './ControlButton';
-import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
 import AddValue from '../add-value';
+import { saveAs } from 'file-saver';
 
 interface Props {
   currentTab: Tab;
@@ -28,14 +28,15 @@ const Controls: React.FC<Props> = ({
   };
 
   const toggleShowAdd = () => {
-    
     setShowAdd(!showAdd);
   };
 
   const saveImage = () => {
     const modelDiv = document.getElementById('modelOutput');
     if (modelDiv) {
-      domtoimage.toBlob(modelDiv).then((blob) => saveAs(blob, 'diagram.png'));
+      domtoimage.toBlob(modelDiv, { style: '' }).then((blob) => {
+        saveAs(blob, 'diagram.png');
+      });
     }
   };
   return (
@@ -72,19 +73,19 @@ const Controls: React.FC<Props> = ({
           <div>
             <ControlButton
               id={'personal'}
-              text="Personal Values"
+              text="Personal"
               highlight={currentTab === Tab.PERSONAL}
               onClick={setCurrentTab}
             />
             <ControlButton
               id={'current'}
-              text={'Current Org Values'}
+              text={'Current'}
               highlight={currentTab === Tab.CURRENT}
               onClick={setCurrentTab}
             />
             <ControlButton
               id={'ideal'}
-              text={'Ideal Org Values'}
+              text={'Desired'}
               highlight={currentTab === Tab.IDEAL}
               onClick={setCurrentTab}
             />

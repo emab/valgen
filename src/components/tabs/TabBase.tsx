@@ -11,8 +11,10 @@ interface Props {
   addValue: Function;
   removeValue: Function;
   tab: Tab;
-  state: State;
-  values: Value[];
+  allValues: Value[];
+  personalValues: Value[];
+  currentValues: Value[];
+  idealValues: Value[];
 }
 
 const TabBase: React.FC<Props> = ({
@@ -20,13 +22,15 @@ const TabBase: React.FC<Props> = ({
   addValue,
   removeValue,
   tab,
-  state,
-  values,
+  allValues,
+  currentValues,
+  personalValues,
+  idealValues,
 }) => {
   const dispatch = useDispatch();
   const onToggleValue = (evt: React.ChangeEvent, checked: boolean) => {
     if (canSelectValue() || !checked) {
-      const valueToToggle = values.find((val) => val.name === evt.target.id);
+      const valueToToggle = allValues.find((val) => val.name === evt.target.id);
       if (checked) {
         dispatch(addValue(valueToToggle));
       } else {
@@ -40,17 +44,14 @@ const TabBase: React.FC<Props> = ({
   };
 
   const getCheckedValues = () => {
-    if (state) {
-      switch (tab) {
-        case Tab.PERSONAL:
-          return state.personal.values;
-        case Tab.CURRENT:
-          return state.current.values;
-        case Tab.IDEAL:
-          return state.ideal.values;
-      }
+    switch (tab) {
+      case Tab.PERSONAL:
+        return personalValues;
+      case Tab.CURRENT:
+        return currentValues;
+      case Tab.IDEAL:
+        return idealValues;
     }
-    return [];
   };
 
   return (
@@ -59,13 +60,19 @@ const TabBase: React.FC<Props> = ({
         <h1 className="text-center">{title}</h1>
       </div>
       <div className="grid grid-cols-3">
-        {values.map((val, i) => {
+        {allValues.map((val) => {
           return (
             <div key={val.name}>
               <Checkbox
                 id={val.name}
                 onChange={onToggleValue}
-                checked={getCheckedValues().includes(val)}
+                checked={
+                  getCheckedValues().find(
+                    (checkedVal) => checkedVal.name === val.name
+                  )
+                    ? true
+                    : false
+                }
               />
               {val.name}
             </div>
@@ -77,8 +84,10 @@ const TabBase: React.FC<Props> = ({
 };
 
 const mapStateToProps = (state: State) => ({
-  state: state,
-  values: state.all.values,
+  personalValues: state.personal.values,
+  currentValues: state.current.values,
+  idealValues: state.ideal.values,
+  allValues: state.all.values,
 });
 
 export default connect(mapStateToProps)(TabBase);

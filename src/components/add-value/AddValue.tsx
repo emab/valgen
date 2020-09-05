@@ -64,7 +64,7 @@ const AddValue: React.FC<Props> = ({ open, handleClose }) => {
 
   const handleSubmit = () => {
     if (valueName) {
-      saveValueToStorage({ name: valueName, level, limiting });
+      saveValueToStorage({ name: `${valueName} (L)`, level, limiting });
       dispatch(reloadValues());
       handleClose();
     }
