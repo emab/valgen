@@ -7,6 +7,7 @@ import ControlButton from './ControlButton';
 import { saveAs } from 'file-saver';
 import domtoimage from 'dom-to-image';
 import { clipboard, nativeImage } from 'electron';
+import AddValue from '../add-value';
 
 interface Props {
   currentTab: Tab;
@@ -25,6 +26,10 @@ const Controls: React.FC<Props> = ({
   const dispatch = useDispatch();
   const handleResetValues = () => {
     dispatch(resetValues());
+  };
+
+  const toggleShowAdd = () => {
+    setShowAdd(!showAdd);
   };
 
   const saveImage = () => {
@@ -51,8 +56,11 @@ const Controls: React.FC<Props> = ({
               Reset
             </Button>
           </div>
-          <div>
-            <Button variant="contained">Custom</Button>
+          <div className="flex">
+            <Button variant="contained" onClick={toggleShowAdd}>
+              Add
+            </Button>
+            <AddValue open={showAdd} handleClose={toggleShowAdd} />
           </div>
         </div>
         {showPreview && (
