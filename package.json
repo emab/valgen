@@ -18,6 +18,18 @@
     "package:dist": "electron-builder --dir",
     "test": "jest"
   },
+  "build": {
+    "appId": "valgen",
+    "asar": true,
+    "files": [
+      "./dist/**/*",
+      "./elecron/electron/main.ts.js"
+    ],
+    "mac": {
+      "category": "utilities"
+    },
+    "extends": null
+  },
   "keywords": [],
   "author": "Eddy Brown",
   "devDependencies": {

@@ -77,7 +77,7 @@ export const VALUES: Value[] = [
 
   { name: 'Learning', level: 4 },
 
-  { name: 'Long-term persistence', level: 7 },
+  { name: 'Long-term perspective', level: 7 },
 
   { name: 'Making a difference', level: 6 },
 
