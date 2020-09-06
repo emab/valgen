@@ -10,7 +10,7 @@ const Model: React.FC<Props> = ({ title, outputValues }) => {
   const populateModel = (): JSX.Element[] => {
     const elements: JSX.Element[] = [];
     for (let i = 7; i >= 1; i--) {
-      elements.push(<div>{outputValues(i)}</div> ?? <div></div>);
+      elements.push(<div key={`${title}${i}`}>{outputValues(i)}</div> ?? <div></div>);
     }
     return elements;
   };
