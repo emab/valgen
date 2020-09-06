@@ -34,6 +34,7 @@ interface ValueRowStyle {
 const useStyles = makeStyles({
   table: {
     marginTop: 20,
+    overflowY: 'hidden',
   },
   thead: {
     fontWeight: 'bold',
