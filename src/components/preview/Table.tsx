@@ -114,7 +114,7 @@ const PreviewTable: React.FC<Props> = ({
   }, [personalValues, currentValues, idealValues]);
 
   return (
-    <div className="mx-3">
+    <div className="mx-3 overflow-y-hidden">
       <TableContainer component={Paper} className={classes.table}>
         <Table size="small">
           <TableHead>
