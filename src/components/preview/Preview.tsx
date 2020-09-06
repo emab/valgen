@@ -39,6 +39,7 @@ const Preview: React.FC<Props> = ({
   return (
     <div id="modelOutput" className="flex flex-row justify-center">
       <div className="model-container">
+        <h1 className="text-center">Personal Values</h1>
         <img src={model} className="model-image" />
         <div className="values-grid">
           <div>{outputPersonalValues(7)}</div>
@@ -53,6 +54,8 @@ const Preview: React.FC<Props> = ({
       </div>
       <div className="model-container">
         <img src={model} className="model-image" />
+        <h1 className="text-center">Current Organisational Values</h1>
+
         <div className="values-grid">
           <div>{outputCurrentValues(7)}</div>
           <div>{outputCurrentValues(6)}</div>
@@ -66,6 +69,7 @@ const Preview: React.FC<Props> = ({
       </div>
       <div className="model-container">
         <img src={model} className="model-image" />
+        <h1 className="text-center">Desired Organisational Values</h1>
         <div className="values-grid">
           <div>{outputIdealValues(7)}</div>
           <div>{outputIdealValues(6)}</div>
