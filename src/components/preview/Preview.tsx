@@ -8,6 +8,7 @@ import { State } from '../../types/State';
 import { Value } from '../../types/Value';
 import PreviewTable from './Table';
 import { Values } from '../../types/Values';
+import Model from './Model';
 
 interface Props {
   personalValues: Value[];
@@ -39,46 +40,24 @@ const Preview: React.FC<Props> = ({
   return (
     <div id="modelOutput" className="flex flex-row justify-center">
       <div className="model-container">
-        <h1 className="text-center">Personal Values</h1>
-        <img src={model} className="model-image" />
-        <div className="values-grid">
-          <div>{outputPersonalValues(7)}</div>
-          <div>{outputPersonalValues(6)}</div>
-          <div>{outputPersonalValues(5)}</div>
-          <div>{outputPersonalValues(4)}</div>
-          <div>{outputPersonalValues(3)}</div>
-          <div>{outputPersonalValues(2)}</div>
-          <div>{outputPersonalValues(1)}</div>
-        </div>
+        <Model
+          title="Personal Values"
+          outputValues={outputPersonalValues}
+        ></Model>
         <PreviewTable displayValue={Values.PERSONAL} />
       </div>
       <div className="model-container">
-        <img src={model} className="model-image" />
-        <h1 className="text-center">Current Organisational Values</h1>
-
-        <div className="values-grid">
-          <div>{outputCurrentValues(7)}</div>
-          <div>{outputCurrentValues(6)}</div>
-          <div>{outputCurrentValues(5)}</div>
-          <div>{outputCurrentValues(4)}</div>
-          <div>{outputCurrentValues(3)}</div>
-          <div>{outputCurrentValues(2)}</div>
-          <div>{outputCurrentValues(1)}</div>
-        </div>
+        <Model
+          title="Current Organisational Values"
+          outputValues={outputCurrentValues}
+        ></Model>
         <PreviewTable displayValue={Values.CURRENT} />
       </div>
       <div className="model-container">
-        <img src={model} className="model-image" />
-        <h1 className="text-center">Desired Organisational Values</h1>
-        <div className="values-grid">
-          <div>{outputIdealValues(7)}</div>
-          <div>{outputIdealValues(6)}</div>
-          <div>{outputIdealValues(5)}</div>
-          <div>{outputIdealValues(4)}</div>
-          <div>{outputIdealValues(3)}</div>
-          <div>{outputIdealValues(2)}</div>
-          <div>{outputIdealValues(1)}</div>
-        </div>
+        <Model
+          title="Desired Organisational Values"
+          outputValues={outputIdealValues}
+        ></Model>
         <PreviewTable displayValue={Values.IDEAL} />
       </div>
     </div>
