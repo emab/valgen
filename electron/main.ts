@@ -41,38 +41,15 @@ function createWindow() {
   });
 }
 
+app.setAppUserModelId('valgen');
+
 app.allowRendererProcessReuse = true;
 autoUpdater.autoInstallOnAppQuit = true;
 
-app.on('ready', () => {
-  console.log('Checking for updates... MAIN');
-});
-
-autoUpdater.on('checking-for-update', () => {
-  console.log('Checking for updates...');
-});
-autoUpdater.on('update-available', (info) => {
-  console.log('Update available...');
-  console.log(info);
-});
-autoUpdater.on('update-not-available', (info) => {
-  console.log('No update available');
-  console.log(info);
-});
-autoUpdater.on('error', (err) => {
-  console.error(err);
-});
-autoUpdater.on('download-progress', (progressObj) => {
-  console.log(progressObj);
-});
-autoUpdater.on('update-downloaded', (info) => {
-  console.log('DOWNLOADED UPDATE');
-});
-
 app
   .on('ready', () => {
-    createWindow();
     autoUpdater.checkForUpdatesAndNotify();
+    createWindow();
   })
   .whenReady()
   .then(() => {
@@ -85,4 +62,3 @@ app
         .catch((err) => console.log('An error occurred: ', err));
     }
   });
-
