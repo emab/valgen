@@ -1,5 +1,5 @@
 {
-  "name": "Valgen",
+  "name": "valgen",
   "version": "0.0.1",
   "description": "Values generator",
   "main": "./dist/main.js",
