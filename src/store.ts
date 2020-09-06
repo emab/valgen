@@ -1,9 +1,9 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import valuesReducer from './components/tabs/store/reducer';
-import { Tab } from './types/Tab';
-import allValuesReducer from './store/reducer';
 import thunk from 'redux-thunk';
+import valuesReducer from './components/tabs/store/reducer';
+import allValuesReducer from './store/reducer';
+import { Tab } from './types/Tab';
 
 const rootReducer = combineReducers({
   personal: valuesReducer(Tab.PERSONAL),
