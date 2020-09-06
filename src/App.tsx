@@ -8,11 +8,20 @@ import TabHandler from './components/tabs/TabHandler';
 import store from './store';
 import './styles/app.css';
 import { Tab } from './types/Tab';
-
+import { ipcRenderer } from 'electron';
 
 const mainElement = document.createElement('div');
 mainElement.setAttribute('id', 'root');
 document.body.appendChild(mainElement);
+const version = document.createElement('p');
+version.setAttribute('id', 'version');
+document.body.appendChild(version);
+
+ipcRenderer.send('app_version');
+ipcRenderer.on('app_version', (event, arg) => {
+  ipcRenderer.removeAllListeners('app_version');
+  version.innerText = 'Version ' + arg.version;
+});
 
 const App = () => {
   const [currentTab, setCurrentTab] = useState(Tab.PERSONAL);
