@@ -4,17 +4,17 @@ import { Button } from '@material-ui/core';
 interface Props {
   id?: string;
   text: string;
-  colour?: 'primary' | 'secondary';
   onClick?: Function;
   highlight?: boolean;
+  children?: any;
 }
 
 const ControlButton: React.FC<Props> = ({
   id,
   text,
-  colour,
   onClick,
   highlight,
+  children,
 }) => {
   const handleOnClick = (evt: React.MouseEvent) => {
     if (id) {
@@ -33,6 +33,7 @@ const ControlButton: React.FC<Props> = ({
       onClick={handleOnClick}
     >
       {text}
+      {children}
     </Button>
   );
 };
