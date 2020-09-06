@@ -1,10 +1,11 @@
 import { Checkbox } from '@material-ui/core';
 import cn from 'classnames';
-import React, { useState } from 'react';
+import React from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { State } from '../../types/State';
 import { Tab } from '../../types/Tab';
 import { Value } from '../../types/Value';
+import CheckIcon from '@material-ui/icons/Check';
 
 interface Props {
   title: string;
@@ -55,11 +56,18 @@ const TabBase: React.FC<Props> = ({
   };
 
   return (
-    <div className='h-full'>
+    <div className="h-full">
       <div className="bg-gray-200 py-2">
-        <h1 className="text-center">{title}</h1>
+        <h1 className="text-center">
+          {title} ({getCheckedValues().length})
+          {!canSelectValue() && <CheckIcon />}
+        </h1>
       </div>
-      <div className={cn("grid grid-cols-3", { ['bg-green-200']: !canSelectValue() })}>
+      <div
+        className={cn('grid grid-cols-3', {
+          ['bg-green-200']: !canSelectValue(),
+        })}
+      >
         {allValues.map((val) => {
           return (
             <div key={val.name}>
