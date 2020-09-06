@@ -59,12 +59,18 @@ const AddValue: React.FC<Props> = ({ open, handleClose }) => {
     event: React.ChangeEvent<{}>,
     checked: boolean
   ) => {
+    console.log(checked);
+
     setLimting(checked);
   };
 
   const handleSubmit = () => {
     if (valueName) {
-      saveValueToStorage({ name: `${valueName} (L)`, level, limiting });
+      saveValueToStorage({
+        name: limiting ? `${valueName} (L)` : valueName,
+        level,
+        limiting,
+      });
       dispatch(reloadValues());
       handleClose();
     }
