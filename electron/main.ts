@@ -15,6 +15,12 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
+    title: 'Valgen',
+    icon: '../icon.png',
+  });
+
+  mainWindow.on('page-title-updated', (e) => {
+    e.preventDefault();
   });
 
   if (process.env.NODE_ENV === 'development') {
