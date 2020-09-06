@@ -26,7 +26,7 @@ ipcRenderer.on('app_version', (event, arg) => {
 const App = () => {
   const [currentTab, setCurrentTab] = useState(Tab.PERSONAL);
   const [showPreview, setShowPreview] = useState(false);
-  const togglePreview = () => setShowPreview(!showPreview);
+  const togglePreview = (set?: boolean) => setShowPreview(set ?? !showPreview);
 
   return (
     <Provider store={store}>
