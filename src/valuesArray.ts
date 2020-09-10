@@ -15,6 +15,8 @@ export const VALUES: Value[] = [
 
   { name: 'Caution (L)', level: 1, limiting: true },
 
+  { name: 'Coaching', level: 6 },
+
   { name: 'Community service', level: 6 },
 
   { name: 'Competitive', level: 3 },
@@ -29,6 +31,10 @@ export const VALUES: Value[] = [
 
   { name: 'Creativity', level: 5 },
 
+  { name: 'Customer collaboration', level: 6 },
+
+  { name: 'Customer satisfaction', level: 2 },
+
   { name: 'Dialogue', level: 6 },
 
   { name: 'Ease with uncertainty', level: 7 },
@@ -39,6 +45,10 @@ export const VALUES: Value[] = [
 
   { name: 'Empathy', level: 6 },
 
+  { name: 'Employee security', level: 1 },
+
+  { name: 'Empowerment', level: 4 },
+
   { name: 'Enthusiasm', level: 5 },
 
   { name: 'Environmental stewardship', level: 6 },
@@ -47,7 +57,11 @@ export const VALUES: Value[] = [
 
   { name: 'Excellence', level: 5 },
 
-  { name: 'Extreme Courtesy', level: 2 },
+  { name: 'Exploitation (L)', level: 1, limiting: true },
+
+  { name: 'External competition', level: 3 },
+
+  { name: 'Extreme courtesy', level: 2 },
 
   { name: 'Family / Friendship', level: 2 },
 
@@ -63,17 +77,23 @@ export const VALUES: Value[] = [
 
   { name: 'Honesty', level: 5 },
 
-  { name: 'Humour', level: 5 },
+  { name: 'Humour/fun', level: 5 },
 
   { name: 'Image (L)', level: 3, limiting: true },
 
   { name: 'Independence', level: 4 },
 
+  { name: 'Innovation', level: 4 },
+
   { name: 'Integrity', level: 5 },
 
   { name: 'Interdependence', level: 6 },
 
+  { name: 'Internal competition (L)', level: 2, limiting: true },
+
   { name: 'Knowledge', level: 4 },
+
+  { name: 'Leadership development', level: 6 } /* ASK ABOUT THIS LEVEL? */,
 
   { name: 'Learning', level: 4 },
 
@@ -81,11 +101,15 @@ export const VALUES: Value[] = [
 
   { name: 'Making a difference', level: 6 },
 
+  { name: 'Manipulation (L)', level: 2, limiting: true },
+
   { name: 'Meaning', level: 5 },
 
   { name: 'Nutrition', level: 1 },
 
   { name: 'Open communication', level: 2 },
+
+  { name: 'Partnerships', level: 6 },
 
   { name: 'Perseverance', level: 4 },
 
@@ -93,9 +117,17 @@ export const VALUES: Value[] = [
 
   { name: 'Physical exercise', level: 1 },
 
+  { name: 'Power (L)', level: 3, limiting: true },
+
   { name: 'Pride', level: 3 },
 
   { name: 'Productivity', level: 3 },
+
+  { name: 'Profit', level: 1 },
+
+  { name: 'Qualifications', level: 3 },
+
+  { name: 'Quality', level: 3 },
 
   { name: 'Respect', level: 2 },
 
@@ -109,9 +141,19 @@ export const VALUES: Value[] = [
 
   { name: 'Shared vision', level: 5 },
 
+  { name: 'Shareholder value', level: 1 },
+
+  { name: 'Skills training', level: 3 },
+
+  { name: 'Social justice', level: 7 },
+
   { name: 'Social responsibility', level: 6 },
 
+  { name: 'Strategic alliances', level: 6 },
+
   { name: 'Status (L)', level: 3, limiting: true },
+
+  { name: 'Teamwork', level: 4 },
 
   { name: 'Tradition (L)', level: 2, limiting: true },
 
