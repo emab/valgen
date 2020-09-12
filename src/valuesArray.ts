@@ -93,7 +93,7 @@ export const VALUES: Value[] = [
 
   { name: 'Knowledge', level: 4 },
 
-  { name: 'Leadership development', level: 6 } /* ASK ABOUT THIS LEVEL? */,
+  { name: 'Leadership development', level: 4 },
 
   { name: 'Learning', level: 4 },
 
