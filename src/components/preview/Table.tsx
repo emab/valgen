@@ -54,21 +54,21 @@ const PreviewTable: React.FC<Props> = ({
   const generateValueRowStyles = () => {
     let newStyles: ValueRowStyle[] = [];
     personalValues.forEach((val) => {
-      if (currentValues.find((otherVal) => (otherVal.name === val.name))) {
+      if (currentValues.some((otherVal) => (otherVal.name === val.name))) {
         newStyles.push({ value: val.name, style: 'bg-purple-300' });
       }
-      if (idealValues.find((otherVal) => (otherVal.name === val.name))) {
+      if (idealValues.some((otherVal) => (otherVal.name === val.name))) {
         newStyles.push({ value: val.name, style: 'bg-blue-300' });
       }
     });
     currentValues.forEach((val) => {
-      if (idealValues.find((otherVal) => (otherVal.name === val.name))) {
+      if (idealValues.some((otherVal) => (otherVal.name === val.name))) {
         newStyles.push({ value: val.name, style: 'bg-red-300' });
       }
     });
     personalValues.forEach((val) => {
-      if (currentValues.find((otherVal) => (otherVal.name === val.name))) {
-        if (idealValues.find((otherVal) => (otherVal.name === val.name))) {
+      if (currentValues.some((otherVal) => (otherVal.name === val.name))) {
+        if (idealValues.some((otherVal) => (otherVal.name === val.name))) {
           newStyles = newStyles.filter(
             (existingVal) => val.name !== existingVal.value
           );

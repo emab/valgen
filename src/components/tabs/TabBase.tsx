@@ -74,13 +74,9 @@ const TabBase: React.FC<Props> = ({
               <Checkbox
                 id={val.name}
                 onChange={onToggleValue}
-                checked={
-                  getCheckedValues().find(
-                    (checkedVal) => checkedVal.name === val.name
-                  )
-                    ? true
-                    : false
-                }
+                checked={getCheckedValues().some(
+                  (checkedVal) => checkedVal.name === val.name
+                )}
               />
               {val.name}
             </div>
